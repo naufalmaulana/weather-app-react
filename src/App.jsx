@@ -24,6 +24,7 @@ function App() {
   const [currentTemp, setCurrentTemp] = useState(null);
   const [weatherLabel, setWeatherLabel] = useState("");
   const [weatherIcon, setWeatherIcon] = useState(null);
+  const [weatherBg, setWeatherBg] = useState(null);
   const [feelsLike, setFeelsLike] = useState(null);
   const [humidity, setHumidity] = useState(null);
   const [windSpeed, setWindSpeed] = useState(null);
@@ -38,22 +39,22 @@ function App() {
   const [scale, setScale] = useState("celsius");
 
   let weatherCode = {
-    0: {label: "Clear sky", icon: sunny},
-    1: {label: "Mainly clear", icon: sunny},
-    2: {label: "Partly cloudy", icon: partlyCloudy},
-    3: {label: "Cloudy", icon: cloudy},
-    45: {label: "Foggy", icon: foggy},
-    48: {label: "Foggy", icon: foggy},
-    51: {label: "Light drizzle", icon: lightRain},
-    61: {label: "Slight rain", icon: lightRain},
-    65: {label: "Heavy rain", icon: heavyRain},
-    71: {label: "Light snowfall", icon: lightSnow},
-    75: {label: "Heavy snowfall", icon: heavySnow},
-    80: {label: "Rain showers", icon: rainShower},
-    82: {label: "Rain showers", icon: rainShower},
-    95: {label: "Light Thunderstorm", icon: lightThunderstorm},
-    96: {label: "Thunderstorm", icon: heavyThunderstorm},
-    99: {label: "Thunderstorm", icon: heavyThunderstorm},
+    0: {label: "Clear sky", icon: sunny, bg: "https://images.unsplash.com/photo-1665310840171-27b1c8eb8797?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1076"},
+    1: {label: "Mainly clear", icon: sunny, bg: "https://images.unsplash.com/photo-1665310840171-27b1c8eb8797?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1076"},
+    2: {label: "Partly cloudy", icon: partlyCloudy, bg: "https://images.unsplash.com/photo-1419833173245-f59e1b93f9ee?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1170"},
+    3: {label: "Cloudy", icon: cloudy, bg: "https://images.unsplash.com/photo-1469365556835-3da3db4c253b?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1170"},
+    45: {label: "Foggy", icon: foggy, bg: "https://images.unsplash.com/photo-1486707471592-8e7eb7e36f78?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1094"},
+    48: {label: "Foggy", icon: foggy, bg: "https://images.unsplash.com/photo-1486707471592-8e7eb7e36f78?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1094"},
+    51: {label: "Light drizzle", icon: lightRain, bg: "https://images.unsplash.com/photo-1625573651510-c0c6b6d4d294?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1170"},
+    61: {label: "Slight rain", icon: lightRain, bg: "https://images.unsplash.com/photo-1625573651510-c0c6b6d4d294?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1170"},
+    65: {label: "Heavy rain", icon: heavyRain, bg: "https://images.unsplash.com/photo-1634750016464-46f186b23443?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1170"},
+    71: {label: "Light snowfall", icon: lightSnow, bg: "https://images.unsplash.com/photo-1615200121762-df2ac420835d?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1171"},
+    75: {label: "Heavy snowfall", icon: heavySnow, bg: "https://images.unsplash.com/photo-1610396932025-9e42807266a0?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1170"},
+    80: {label: "Rain showers", icon: rainShower, bg: "https://images.unsplash.com/photo-1641309664410-b6466c07c935?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1170"},
+    82: {label: "Rain showers", icon: rainShower, bg: "https://images.unsplash.com/photo-1641309664410-b6466c07c935?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1170"},
+    95: {label: "Light Thunderstorm", icon: lightThunderstorm, bg: "https://images.unsplash.com/photo-1629800537338-6a082a7aac0b?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1170"},
+    96: {label: "Thunderstorm", icon: heavyThunderstorm, bg: "https://images.unsplash.com/photo-1590942759420-8bcb32579cf6?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=687"},
+    99: {label: "Thunderstorm", icon: heavyThunderstorm, bg: "https://images.unsplash.com/photo-1590942759420-8bcb32579cf6?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=687"},
   }
 
   function getCurrentDateFix() {
@@ -119,6 +120,7 @@ function App() {
     const weatherIndex = data.hourly?.weather_code?.[idx];
     setWeatherLabel(typeof weatherIndex !== "undefined" ? weatherCode[weatherIndex]?.label : "");
     setWeatherIcon(typeof weatherIndex !== "undefined" ? weatherCode[weatherIndex]?.icon : null);
+    setWeatherBg(typeof weatherIndex !== "undefined" ? weatherCode[weatherIndex]?.bg : null);
 
     const feels = Math.round(data.hourly?.apparent_temperature?.[idx]);
     setFeelsLike(typeof feels !== "undefined" ? feels : null);
@@ -186,7 +188,7 @@ function App() {
       {/* <div id="loader" className="min-h-screen w-full flex items-center justify-center">
         <div className="w-12 h-12 rounded-full border-4 border-transparent border-t-[#25b09b] animate-spin" />
       </div> */}
-      <main id="main" className="flex items-center justify-center">
+      <main id="main" className="flex items-center justify-center bg-no-repeat bg-cover h-full min-h-screen p-[25px]" style={{ backgroundImage: `url(${weatherBg})` }}>
         <div className="w-full max-w-[600px] rounded-lg bg-[#171717] p-4 text-center text-[#f5f5f5]">
           <div className="flex items-center justify-between mb-10 gap-4">
 
